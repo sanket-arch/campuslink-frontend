@@ -1,30 +1,45 @@
 // store/features/user/userSlice.js
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchUser } from '@/store/actions/userActions';
+import { userLogin } from '@/store/actions/userActions';
 
 const userReducers = createSlice({
   name: 'user',
   initialState: {
     loading: false,
     error: null,
-    data: null,
+    loginData: null,
+    isUserLoggedIn: false
   },
-  reducers: {},
+  reducers: {
+    setUserLoginStatus: (state, action) => {
+      state.isUserLoggedIn = action.payload;
+    },
+    clearUserLoginData: (state) => {
+      state.loginData = null;
+      state.isUserLoggedIn = false;
+      state.error = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUser.pending, (state) => {
+      .addCase(userLogin.pending, (state) => {
         state.loading = true
+        state.loginData = null,
         state.error = null
       })
-      .addCase(fetchUser.fulfilled, (state, action) => {
+      .addCase(userLogin.fulfilled, (state, action) => {
         state.loading = false
-        state.data = action.payload
+        state.loginData = action.payload,
+        state.error = null
       })
-      .addCase(fetchUser.rejected, (state, action) => {
+      .addCase(userLogin.rejected, (state, action) => {
         state.loading = false
+        state.loginData = null,
         state.error = action.payload
       })
   }
 })
+
+export const { setUserLoginStatus, clearUserLoginData } = userReducers.actions;
 
 export default userReducers.reducer

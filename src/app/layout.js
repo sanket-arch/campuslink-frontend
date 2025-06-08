@@ -1,7 +1,6 @@
 import Providers from "@/components/common/Providers";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./globals.css";
-import Sidebar from "@/components/common/Sidebar";
 
 export const metadata = {
   title: "Campus Link",
@@ -14,14 +13,13 @@ export default function RootLayout({ children }) {
       <body>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <Providers>
-            <div style={{ display: "flex", minHeight: "100vh" }}>
-              <Sidebar />
-              <main style={{ flex: 1, padding: "1rem" }}>{children}</main>
+            <div style={{ minHeight: "100vh" }}>
+              {children}
             </div>
           </Providers>
         </ThemeProvider>
