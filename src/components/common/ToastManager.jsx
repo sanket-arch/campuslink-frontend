@@ -9,10 +9,6 @@ const ToastManager = () => {
   const dispatch = useDispatch();
   const { toastOpen, toastMessage, toastTitle, toastType, toastDuration } = useSelector((state) => state.global);
 
-  React.useEffect(() => {
-    console.log('[ToastManager] toastOpen:', toastOpen, 'toastMessage:', toastMessage, 'toastTitle:', toastTitle);
-  }, [toastOpen, toastMessage, toastTitle]);
-
   const toastStyles = {
     info: "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-800",
     success: "bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-800",

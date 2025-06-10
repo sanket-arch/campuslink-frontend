@@ -12,7 +12,6 @@ const toastSlice = createSlice({
   },
   reducers: {
     showToast: (state, action) => {
-      console.log("showToast action payload:", action.payload);
       state.toastOpen = true;
       state.toastMessage = action.payload.message;
       state.toastTitle = action.payload.title || "Notification";

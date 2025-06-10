@@ -46,12 +46,10 @@ export default function LoginPage() {
         router.push("/");
       } else {
         dispatch(showToast({message: "Please check your login credentials or try again later.", title: "Login Failed", type: "error"}));
-        console.error("Please check your login credentials or try again later.");
       }
   }, [isUserLoggedIn, loginData, loading]);
 
   function handleLogin(data) {
-    console.log("Login data:", data);
     dispatch(userLogin({username: data.username, password: data.password}));
   }
 
