@@ -15,6 +15,7 @@ import { loginSchema } from "@/lib/validationSchema";
 import _, { set } from "lodash";
 import { useRouter } from "next/navigation";
 import { setUserLoginStatus } from "@/store/reducers/userReducers";
+import { showToast } from "@/store/reducers/globalReducers";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -38,18 +39,19 @@ export default function LoginPage() {
         }
       }
     }
-    if(loginData){
-      if(loginData?.access_token) {
+      if(isUserLoggedIn && loginData && loginData?.access_token) {
+        dispatch(showToast({message: "Login successful", title: "Success", type: "success"}));
         document.cookie = `auth_token=${loginData.access_token}; path=/; max-age=${60 * 60 * 24 * 30}`;
         dispatch(setUserLoginStatus(true));
         router.push("/");
       } else {
-        console.error("Login failed: No token received");
+        dispatch(showToast({message: "Please check your login credentials or try again later.", title: "Login Failed", type: "error"}));
+        console.error("Please check your login credentials or try again later.");
       }
-    }
   }, [isUserLoggedIn, loginData, loading]);
 
   function handleLogin(data) {
+    console.log("Login data:", data);
     dispatch(userLogin({username: data.username, password: data.password}));
   }
 
@@ -76,6 +78,7 @@ export default function LoginPage() {
       <Button
         type={type}
         disabled={!isValid || _.isEmpty(touchedFields) || loading}
+        onClick={handleSubmit(handleLogin)}
         className="bg-primary text-white dark:text-primary dark:bg-secondary p-2 rounded hover:bg-primary/80 cursor-pointer w-full"
       >
         {label}

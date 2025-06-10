@@ -33,6 +33,7 @@ const userReducers = createSlice({
         state.error = null
       })
       .addCase(userLogin.rejected, (state, action) => {
+        console.error("Login failed:", action.payload);
         state.loading = false
         state.loginData = null,
         state.error = action.payload

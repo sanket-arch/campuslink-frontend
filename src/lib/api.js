@@ -1,4 +1,5 @@
 import axios from "axios";
+import { constants } from "./constants";
 
 // Create axios instance
 const api = axios.create({
@@ -11,9 +12,14 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const auth_Token = document.cookie.split('; ').find(row => row.startsWith('auth_token=')).split('=')[1];
-    if (auth_Token) {
-      config.headers.Authorization = `Bearer ${auth_Token}`;
+    if(constants.ENDPOINTS_WITHOUT_AUTH.includes(config.url)){
+      return config; // Skip adding auth token for endpoints that don't require it
+    } else {
+      const tokenRow = document.cookie.split('; ').find(row => row.startsWith('auth_token='));
+      const auth_Token = tokenRow ? tokenRow.split('=')[1] : null;
+      if (auth_Token) {
+        config.headers.Authorization = `Bearer ${auth_Token}`;
+      }
     }
     return config;
   },
