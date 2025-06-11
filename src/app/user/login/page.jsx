@@ -10,9 +10,9 @@ import { LoginSvg } from "@/utils/Icons";
 import Link from "next/link";
 import { ACTION_BUTTONS, ACTION_LABELS } from "@/lib/constants";
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/lib/validationSchema";
-import _, { set } from "lodash";
+import _ from "lodash";
 import { useRouter } from "next/navigation";
 import { setUserLoginStatus } from "@/store/reducers/userReducers";
 import { showToast } from "@/store/reducers/globalReducers";
@@ -20,18 +20,23 @@ import { showToast } from "@/store/reducers/globalReducers";
 export default function LoginPage() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { loginData,loading, isUserLoggedIn } = useSelector((state) => state.user);
+  const { loginData, loading, isUserLoggedIn, error } = useSelector(
+    (state) => state.user
+  );
 
-  const {register, handleSubmit, formState:{errors, isValid, touchedFields}} = useForm({resolver: yupResolver(loginSchema), mode: 'onChange'});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid, touchedFields },
+  } = useForm({ resolver: yupResolver(loginSchema), mode: "onChange" });
 
   useEffect(() => {
-    if (isUserLoggedIn) {
-      router.push("/");
-      return;
-    } else if (!_.isEmpty(document.cookie)) {
-      const auth_Token = document.cookie.split('; ').find(row => row.startsWith('auth_token='));
+    if (!_.isEmpty(document.cookie)) {
+      const auth_Token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("auth_token="));
       if (auth_Token) {
-        const token = auth_Token.split('=')[1];
+        const token = auth_Token.split("=")[1];
         if (token) {
           dispatch(setUserLoginStatus(true));
           router.push("/");
@@ -39,18 +44,33 @@ export default function LoginPage() {
         }
       }
     }
-      if(isUserLoggedIn && loginData && loginData?.access_token) {
-        dispatch(showToast({message: "Login successful", title: "Success", type: "success"}));
-        document.cookie = `auth_token=${loginData.access_token}; path=/; max-age=${60 * 60 * 24 * 30}`;
-        dispatch(setUserLoginStatus(true));
-        router.push("/");
-      } else {
-        dispatch(showToast({message: "Please check your login credentials or try again later.", title: "Login Failed", type: "error"}));
-      }
+
+    if (isUserLoggedIn && loginData && loginData?.access_token) {
+      dispatch(
+        showToast({
+          message: "Login successful",
+          title: "Success",
+          type: "success",
+        })
+      );
+      document.cookie = `auth_token=${
+        loginData.access_token
+      }; path=/; max-age=${60 * 60 * 24 * 30}`;
+      dispatch(setUserLoginStatus(true));
+      router.push("/");
+    } else if (error) {
+      dispatch(
+        showToast({
+          message: "Please check your login credentials or try again later.",
+          title: "Login Failed",
+          type: "error",
+        })
+      );
+    }
   }, [isUserLoggedIn, loginData, loading]);
 
   function handleLogin(data) {
-    dispatch(userLogin({username: data.username, password: data.password}));
+    dispatch(userLogin({ username: data.username, password: data.password }));
   }
 
   function renderInput(name, type, placeholder, label) {
@@ -64,8 +84,10 @@ export default function LoginPage() {
           {...register(name)}
           className="p-2 border border-gray-300 rounded"
         />
-        {errors[name]&& (
-          <p className="text-red-500 text-xs text-start">{errors[name]?.message}</p>
+        {errors[name] && (
+          <p className="text-red-500 text-xs text-start">
+            {errors[name]?.message}
+          </p>
         )}
       </div>
     );

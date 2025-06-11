@@ -25,16 +25,19 @@ const userReducers = createSlice({
       .addCase(userLogin.pending, (state) => {
         state.loading = true
         state.loginData = null,
+        state.isUserLoggedIn = false,
         state.error = null
       })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.loading = false
         state.loginData = action.payload,
+        state.isUserLoggedIn = true
         state.error = null
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.loading = false
         state.loginData = null,
+        state.isUserLoggedIn = false
         state.error = action.payload
       })
   }
