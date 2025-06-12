@@ -16,6 +16,7 @@ import _ from "lodash";
 import { useRouter } from "next/navigation";
 import { setUserLoginStatus } from "@/store/reducers/userReducers";
 import { showToast } from "@/store/reducers/globalReducers";
+import Cookies from "js-cookie";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -32,16 +33,11 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (!_.isEmpty(document.cookie)) {
-      const auth_Token = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("auth_token="));
+      const auth_Token = Cookies.get("auth_token");
       if (auth_Token) {
-        const token = auth_Token.split("=")[1];
-        if (token) {
           dispatch(setUserLoginStatus(true));
           router.push("/");
           return;
-        }
       }
     }
 
@@ -53,9 +49,10 @@ export default function LoginPage() {
           type: "success",
         })
       );
-      document.cookie = `auth_token=${
-        loginData.access_token
-      }; path=/; max-age=${60 * 60 * 24 * 30}`;
+      Cookies.set("auth_token", loginData.access_token, {
+        expires: 30,
+        path: "/",
+      });
       dispatch(setUserLoginStatus(true));
       router.push("/");
     } else if (error) {
@@ -105,6 +102,7 @@ export default function LoginPage() {
       </Button>
     );
   }
+  if (isUserLoggedIn) return;
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-1.5">

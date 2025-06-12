@@ -2,6 +2,7 @@ import Providers from "@/components/common/Providers";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./globals.css";
 import ToastManager from "@/components/common/ToastManager";
+import LayoutShell from "@/components/common/LayoutShell";
 
 export const metadata = {
   title: "Campus Link",
@@ -19,8 +20,8 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <Providers>
-              <div style={{ minHeight: "100vh" }}>{children}</div>
-              <ToastManager />
+            <LayoutShell>{children}</LayoutShell>
+            <ToastManager />
           </Providers>
         </ThemeProvider>
       </body>

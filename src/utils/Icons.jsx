@@ -298,22 +298,22 @@ export const AppLogoIcon = (props) => (
   >
     <defs>
       <linearGradient id="gradCL" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#3B82F6" />
-        <stop offset="100%" stop-color="#06B6D4" />
+        <stop offset="0%" stopColor="#3B82F6" />
+        <stop offset="100%" stopColor="#06B6D4" />
       </linearGradient>
     </defs>
     <path
       d="M50 20C35 20 26 30 26 40C26 50 35 60 50 60"
       stroke="url(#gradCL)"
       strokeWidth="6"
-      stroke-linecap="round"
+      strokeLinecap="round"
       fill="none"
     />
     <path
       d="M50 30V60H60"
       stroke="url(#gradCL)"
       strokeWidth="6"
-      stroke-linecap="round"
+      strokeLinecap="round"
       fill="none"
     />
     <polygon points="48,28 58,24 68,28 58,32" fill="#FFFFFF" />

@@ -1,6 +1,6 @@
 "use client";
 
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
+import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import Sidebar from "./Sidebar";
@@ -14,8 +14,9 @@ export default function HamburgerMenu() {
           <Menu className="h-6 text-gray-800 hover:text-gray-600 dark:text-gray-400" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left">
-        <Sidebar />
+      <SheetContent side="left" className="bg-amber-300">
+        <SheetTitle className="sr-only">menu</SheetTitle>
+        <Sidebar className="w-full" />
       </SheetContent>
     </Sheet>
   );

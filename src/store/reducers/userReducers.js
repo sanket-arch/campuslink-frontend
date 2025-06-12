@@ -1,6 +1,6 @@
 // store/features/user/userSlice.js
 import { createSlice } from '@reduxjs/toolkit'
-import { userLogin } from '@/store/actions/userActions';
+import { userLogin, userLogout } from '@/store/actions/userActions';
 
 const userReducers = createSlice({
   name: 'user',
@@ -35,6 +35,21 @@ const userReducers = createSlice({
         state.error = null
       })
       .addCase(userLogin.rejected, (state, action) => {
+        state.loading = false
+        state.loginData = null,
+        state.isUserLoggedIn = false
+        state.error = action.payload
+      })
+      .addCase(userLogout.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(userLogout.fulfilled, (state) => {
+        state.loading = false
+        state.loginData = null,
+        state.isUserLoggedIn = false
+        state.error = null
+      }).addCase(userLogout.rejected, (state, action) => {
         state.loading = false
         state.loginData = null,
         state.isUserLoggedIn = false

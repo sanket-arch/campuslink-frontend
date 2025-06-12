@@ -1,11 +1,9 @@
 "use client";
 import RightPanel from "@/components/common/RightPannel";
-import Sidebar from "@/components/common/Sidebar";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-import _ from "lodash";
-import HamburgerMenu from "@/components/common/HamburgurMenu";
+import { Spinner } from "@/components/ui/Spinner";
 
 export default function Home() {
   const router = useRouter();
@@ -17,15 +15,13 @@ export default function Home() {
     }
   }, [isUserLoggedIn]);
 
-  return (
-    <div className="text-center">
-      {isUserLoggedIn && (
-        <div className="flex flex-row justify-between items-start h-screen">
-          <Sidebar className="hidden md:block" />
-          <HamburgerMenu className="hidden md:block text-4xl text-gray-500 mt-4" />
-          <RightPanel />
-        </div>
-      )}
-    </div>
-  );
+  if (!isUserLoggedIn) {
+    return (
+      <div className="flex items-center justify-center min-h-screen w-full">
+        <Spinner className="text-primary dark:text-secondary" size="large" />
+      </div>
+    );
+  }
+
+  return <div className="text-center">{isUserLoggedIn && <RightPanel />}</div>;
 }

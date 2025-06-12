@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { AppLogoIcon, MaleAvatarIcon } from "@/utils/Icons";
 
-export default function Sidebar({className}) {
+export default function Sidebar({ className }) {
   const sideBarContent = [
     {
       icon: HomeIcon,
@@ -35,7 +35,7 @@ export default function Sidebar({className}) {
     {
       icon: UserIcon,
       label: "Profile",
-      href: "/profile",
+      href: "/user/profile",
     },
   ];
 
@@ -53,7 +53,9 @@ export default function Sidebar({className}) {
   }
 
   return (
-    <div className={`${className} flex flex-col justify-between items-center w-64 h-full bg-gray-800 text-white p-4 dark:bg-gray-600 dark:text-gray-white`}>
+    <div
+      className={`${className} flex flex-col justify-between items-center w-64 h-screen overflow-y-auto bg-gray-800 text-white p-4 dark:bg-gray-600 dark:text-gray-white`}
+    >
       <Link
         href="/user/login"
         className="mb-4  dark:text-gray-800 flex  flex-col items-center justify-center"
@@ -69,7 +71,7 @@ export default function Sidebar({className}) {
           })
         )}
       </ul>
-      <div className="mt-3 mb-5 flex items-center space-x-4 border-t pt-4 w-full">
+      <div className="flex items-center space-x-4 border-t w-full pt-2">
         <div className="w-12 h-12 rounded-full bg-gray-500 flex items-center justify-center">
           <MaleAvatarIcon className="text-white w-6 h-6" />
         </div>
