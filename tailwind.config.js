@@ -8,7 +8,27 @@ export default {
   ],
   theme: {
     extend: {
-        fontSize: {
+      fontFamily: {
+        sans: [
+          'Inter',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
+        heading: [
+          'Poppins',
+          'ui-sans-serif',
+          'system-ui',
+          'sans-serif',
+        ],
+        mono: [
+          'Fira Mono',
+          'ui-monospace',
+          'SFMono-Regular',
+          'monospace',
+        ],
+      },
+      fontSize: {
         'xs': '.75rem',
         'sm': '.875rem',
         'base': '1rem',
@@ -25,6 +45,8 @@ export default {
         primary: '#1e40af',
         secondary: '#f59e42',
         accent: '#10b981',
+        'link-primary': 'var(--link-primary)',
+
         // Custom colors
         brand: {
           light: '#e0e7ff',
