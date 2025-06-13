@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-import { userLogout } from "@/store/actions/userActions";
 import { useEffect } from "react";
 import { showToast } from "@/store/reducers/globalReducers";
 import Cookies from "js-cookie";
@@ -33,14 +32,8 @@ export default function RightPanel() {
     }
   }, [isUserLoggedIn, error]);
 
-  function handleLogout() {
-    dispatch(userLogout());
-  }
   return (
     <div className="flex flex-col w-full p-4 ">
-      <nav className="flex justify-end">
-        <Button onClick={handleLogout}>Logout</Button>
-      </nav>
       <h2>This is right pannel</h2>
     </div>
   );

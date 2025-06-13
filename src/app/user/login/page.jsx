@@ -49,8 +49,11 @@ export default function LoginPage() {
           type: "success",
         })
       );
+      const date = new Date();
+      date.setTime(date.getTime() + (30 * 60 * 1000)); 
+      
       Cookies.set("auth_token", loginData.access_token, {
-        expires: 30,
+        expires: date,
         path: "/",
       });
       dispatch(setUserLoginStatus(true));

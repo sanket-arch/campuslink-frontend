@@ -3,6 +3,7 @@
 import Sidebar from "@/components/common/Sidebar";
 import HamburgerMenu from "@/components/common/HamburgurMenu";
 import { usePathname } from "next/navigation";
+import NavBar from "./Navbar";
 
 export default function LayoutShell({ children }) {
   const pathname = usePathname();
@@ -17,7 +18,7 @@ export default function LayoutShell({ children }) {
     <div className="flex flex-row min-h-screen">
       <Sidebar className="hidden md:block" />
       <HamburgerMenu className="md:hidden" />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1"><NavBar/>{children}</main>
     </div>
   );
 }

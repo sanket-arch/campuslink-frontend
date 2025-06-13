@@ -23,5 +23,5 @@ export default function Home() {
     );
   }
 
-  return <div className="text-center">{isUserLoggedIn && <RightPanel />}</div>;
+  return <div className="text-center">{isUserLoggedIn &&  <RightPanel />}</div>;
 }
