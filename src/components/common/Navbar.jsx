@@ -5,7 +5,8 @@ import { Card } from "../ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { MaleAvatarIcon } from "@/utils/Icons";
 import Link from "next/link";
-import { useState } from "react";
+import { BellIcon, SearchIcon } from "lucide-react";
+import { Input } from "../ui/input";
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -39,25 +40,28 @@ export default function NavBar() {
 
   return (
     <Card className="rounded-none p-4">
-      <nav className="flex justify-end w-[98%]">
-        <Popover>
-          <PopoverTrigger>
-            <div className="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center">
-              <MaleAvatarIcon className="text-white w-6 h-6" />
-            </div>
-          </PopoverTrigger>
-          <PopoverContent className="flex flex-col mr-1.5 w-40 space-y-2 mt-3">
-            {popoverContent.map((content) => (
-              <Link
-                key={content.label}
-                href={content.href}
-              >
-                {content.label}
-              </Link>
-            ))}
-            <Button onClick={handleLogout}>Logout</Button>
-          </PopoverContent>
-        </Popover>
+      <nav className="flex justify-between items-center w-[98%]">
+        <div className="ml-10 w-90">
+          <Input placeholder="Search Something..." />
+        </div>
+        <div className="flex items-center justify-between w-[8%]">
+          <BellIcon />
+          <Popover>
+            <PopoverTrigger>
+              <div className="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center">
+                <MaleAvatarIcon className="text-white w-6 h-6" />
+              </div>
+            </PopoverTrigger>
+            <PopoverContent className="flex flex-col mr-1.5 w-40 space-y-2 mt-3">
+              {popoverContent.map((content) => (
+                <Link key={content.label} href={content.href}>
+                  {content.label}
+                </Link>
+              ))}
+              <Button onClick={handleLogout}>Logout</Button>
+            </PopoverContent>
+          </Popover>
+        </div>
       </nav>
     </Card>
   );

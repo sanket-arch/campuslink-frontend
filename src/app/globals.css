@@ -40,6 +40,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-link-primary: var(--link-primary);
+  --color-gray-primary: var(--gray-primary)
 }
 
 :root {
@@ -91,6 +92,8 @@
   --sidebar-ring: oklch(0.705 0.015 286.067); /* Gray ring - #aaaabb */
 
   --link-primary:oklch(0.5461 0.2152 262.88) /* Muted blue - approx #2563eb */;
+
+  --gray-primary:oklch(27.8% 0.033 256.848) /* #1e2939*/
 }
 
 .dark {

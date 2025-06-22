@@ -1,9 +1,8 @@
 "use client";
-
 import Sidebar from "@/components/common/Sidebar";
 import HamburgerMenu from "@/components/common/HamburgurMenu";
+import Navbar from "@/components/common/Navbar"; // If you have a navbar
 import { usePathname } from "next/navigation";
-import NavBar from "./Navbar";
 
 export default function LayoutShell({ children }) {
   const pathname = usePathname();
@@ -15,10 +14,15 @@ export default function LayoutShell({ children }) {
   }
 
   return (
-    <div className="flex flex-row min-h-screen">
-      <Sidebar className="hidden md:block" />
+    <div className="flex h-screen">
+      <Sidebar className="hidden md:block w-64 flex-shrink-0" />
       <HamburgerMenu className="md:hidden" />
-      <main className="flex-1"><NavBar/>{children}</main>
+      <div className="flex flex-col flex-1">
+        <Navbar />
+        <main className="flex-1 overflow-y-auto">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

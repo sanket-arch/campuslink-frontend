@@ -7,6 +7,10 @@ import {
   HomeIcon,
   LucideShieldQuestion,
   ShoppingBasket,
+  Star,
+  Calendar,
+  ShoppingCart,
+  MessageCircleQuestion,
 } from "lucide-react";
 import { AppLogoIcon, MaleAvatarIcon } from "@/utils/Icons";
 
@@ -18,12 +22,17 @@ export default function Sidebar({ className }) {
       href: "/",
     },
     {
-      icon: LucideShieldQuestion,
+      icon: Star,
+      label: "Reviews",
+      href: "/review",
+    },
+    {
+      icon: MessageCircleQuestion,
       label: "Queries",
       href: "/queries",
     },
     {
-      icon: ShoppingBasket,
+      icon: ShoppingCart,
       label: "MarketPlace",
       href: "/marketplace",
     },
@@ -31,6 +40,11 @@ export default function Sidebar({ className }) {
       icon: BellIcon,
       label: "Notification",
       href: "/notifications",
+    },
+    {
+      icon: Calendar,
+      label: "Events",
+      href: "/events",
     },
     {
       icon: UserIcon,
@@ -54,7 +68,7 @@ export default function Sidebar({ className }) {
 
   return (
     <div
-      className={`${className} flex flex-col justify-between items-center w-64 h-screen overflow-y-auto bg-gray-800 text-white p-4 dark:bg-gray-600 dark:text-gray-white`}
+      className={`${className} flex flex-col justify-between items-center w-64 bg-gray-800 text-white p-4 dark:bg-gray-600 dark:text-gray-white`}
     >
       <Link
         href="/user/login"
