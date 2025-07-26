@@ -1,13 +1,13 @@
 import api from "@/lib/api";
 import { ACTION_TYPES } from "@/lib/constants";
-import { getAllRolesUrl } from "@/lib/constants/urls";
+import { getAllCampusesUrl } from "@/lib/constants/urls";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getAllRoles = createAsyncThunk(
-  ACTION_TYPES.GET_ALL_ROLES,
-  async (_, thunkAPI) => {
+export const getAllCampuses = createAsyncThunk(
+ACTION_TYPES.GET_ALL_CAMPUSES,
+  async (_, thunkAPI) => { 
     try {
-      const response = await api.get(getAllRolesUrl);
+      const response = await api.get(getAllCampusesUrl);
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(
