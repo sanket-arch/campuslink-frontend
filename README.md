@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 Campus Link - Frontend
 
-## Getting Started
+Campus Link is a platform designed to connect students across various courses and campuses.  
+The frontend is built using **Next.js** and styled with **TailwindCSS**, ensuring a fast and modern user experience.  
+The application runs inside a **Docker container** for consistency and easy deployment.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
+- 📖 Student queries, reviews, and marketplace integration  
+- 🏫 Campus-based segregation of users and content  
+- 🧑‍🏫 Reviews for hostels, professors, and mess facilities  
+- 🔒 JWT-based authentication & role-based access  
+- 🎨 Modern UI with **Next.js** + **TailwindCSS**  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
+- **Frontend Framework:** Next.js (React + SSR)  
+- **Styling:** TailwindCSS  
+- **Authentication:** JWT integration with backend  
+- **Containerization:** Docker & Docker Compose  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📦 Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (if running locally without Docker)  
+- [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Running with Docker
 
-## Deploy on Vercel
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/<your-username>/campus-link-frontend.git
+   cd campus-link-frontend
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Build and run the Docker container:
+   ```bash
+   docker-compose up --build
+   ```
+   The app will be available at [http://localhost:3000](http://localhost:3000).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### Running Locally (without Docker)
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+   The app will be available at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 📝 Project Structure
+
+- `/src/app` - Main Next.js application code
+- `/src/components` - Reusable UI components
+- `/src/store` - Redux store and actions
+- `/public` - Static assets
+- `/Dockerfile` - Docker configuration
+- `/docker-compose.yml` - Docker Compose setup
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
