@@ -1,6 +1,11 @@
 // store/features/user/userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { checkUserexistsByUsername, insertUser, userLogin, userLogout } from "@/store/actions/userActions";
+import {
+  checkUserexistsByUsername,
+  insertUser,
+  userLogin,
+  userLogout,
+} from "@/store/actions/userActions";
 import { set } from "lodash";
 
 const userReducers = createSlice({
@@ -24,7 +29,7 @@ const userReducers = createSlice({
     },
     setUsernameExists: (state, action) => {
       state.usernameExists = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -91,6 +96,7 @@ const userReducers = createSlice({
   },
 });
 
-export const { setUserLoginStatus, clearUserLoginData, setUsernameExists } = userReducers.actions;
+export const { setUserLoginStatus, clearUserLoginData, setUsernameExists } =
+  userReducers.actions;
 
 export default userReducers.reducer;

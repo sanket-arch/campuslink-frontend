@@ -6,9 +6,11 @@ const CustomSelect = ({
   value,
   onChange,
   isMulti = false,
+  className,
 }) => {
   return (
     <Select
+      className={className}
       isMulti={isMulti}
       options={options}
       value={
