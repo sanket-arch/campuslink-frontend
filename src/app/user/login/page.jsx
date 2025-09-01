@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { setUserLoginStatus } from "@/store/reducers/userReducers";
 import { showToast } from "@/store/reducers/globalReducers";
 import Cookies from "js-cookie";
+import { setCookies } from "@/lib/utils";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -35,9 +36,9 @@ export default function LoginPage() {
     if (!_.isEmpty(document.cookie)) {
       const auth_Token = Cookies.get("auth_token");
       if (auth_Token) {
-          dispatch(setUserLoginStatus(true));
-          router.push("/");
-          return;
+        dispatch(setUserLoginStatus(true));
+        router.push("/");
+        return;
       }
     }
 
@@ -49,13 +50,7 @@ export default function LoginPage() {
           type: "success",
         })
       );
-      const date = new Date();
-      date.setTime(date.getTime() + (30 * 60 * 1000)); 
-      
-      Cookies.set("auth_token", loginData.access_token, {
-        expires: date,
-        path: "/",
-      });
+      setCookies({ key: "auth_token", value: loginData.access_token });
       dispatch(setUserLoginStatus(true));
       router.push("/");
     } else if (error) {
