@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from "@/store/actions/userActions";
+import { redirect, userLogin } from "@/store/actions/userActions";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -66,6 +66,7 @@ export default function LoginPage() {
 
   function handleLogin(data) {
     dispatch(userLogin({ username: data.username, password: data.password }));
+    dispatch(redirect("http://localhost:3000/user/profile"));
   }
 
   function renderInput(name, type, placeholder, label) {

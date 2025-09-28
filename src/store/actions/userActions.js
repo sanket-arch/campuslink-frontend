@@ -4,6 +4,7 @@ import { ACTION_TYPES } from "@/lib/constants";
 import {
   checkUserExistsUrl,
   insertUserUrl,
+  redirectUrl,
   userLoginUrl,
   userLogoutUrl,
 } from "@/lib/constants/urls";
@@ -62,6 +63,19 @@ export const checkUserexistsByUsername = createAsyncThunk(
       return thunkAPI.rejectWithValue(
         err.response?.data?.message || err.message
       );
+    }
+  }
+);
+
+export const redirect = createAsyncThunk(
+  ACTION_TYPES.REDIRECT,
+  async (url, thunkAPI) => {
+    try {
+      // Instead of making an API call, just set window.location.href
+      window.location.href = `http://localhost:8082/api/auth/redirect?url=${encodeURIComponent(url)}`;
+      return true;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
